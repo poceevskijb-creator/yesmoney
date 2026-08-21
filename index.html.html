@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://tffvdtdgxtprcharwuuo.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_bWaDqvFFQ1hG3gMoF4Lerw_YPqLdAOP";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>YesMoneY — YMY</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(
+                    circle at 50% -10%,
+                    rgba(0, 255, 100, 0.18),
+                    transparent 35%
+                ),
+                #050805;
+            color: white;
+            min-height: 100vh;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            font-weight: 800;
+            font-family: Arial, sans-serif;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 25px;
+
+            border-bottom: 1px solid rgba(0, 255, 100, 0.2);
+
+            background: rgba(3, 7, 4, 0.9);
+
+            position: sticky;
+            top: 0;
+
+            z-index: 10;
+
+            backdrop-filter: blur(12px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            font-size: 23px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #061208;
+
+            border: 2px solid #00ff66;
+
+            color: #00ff66;
+
+            font-weight: 900;
+            font-size: 16px;
+
+            box-shadow:
+                0 0 8px #00ff66,
+                0 0 25px rgba(0, 255, 102, 0.45);
+        }
+
+        .logo span {
+            color: #00ff66;
+
+            text-shadow:
+                0 0 12px rgba(0,255,102,0.7);
+        }
+
+        .auth {
+            display: flex;
+            gap: 10px;
+        }
+
+        .login {
+            background: transparent;
+
+            color: white;
+
+            border: 1px solid #00ff66;
+
+            padding: 11px 17px;
+
+            border-radius: 9px;
+
+            transition: 0.2s;
+        }
+
+        .login:hover {
+            background: rgba(0,255,102,0.1);
+        }
+
+        .register {
+            background: #00ff66;
+
+            color: #021006;
+
+            padding: 12px 18px;
+
+            border-radius: 9px;
+
+            box-shadow:
+                0 0 15px rgba(0,255,102,0.5);
+
+            transition: 0.2s;
+        }
+
+        .register:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 0 25px rgba(0,255,102,0.8);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            padding: 70px 20px 45px;
+
+            text-align: center;
+
+            max-width: 900px;
+
+            margin: auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 10vw, 80px);
+
+            font-weight: 1000;
+
+            letter-spacing: -3px;
+
+            color: #fff;
+
+            text-shadow:
+                0 0 8px #00ff66,
+                0 0 30px rgba(0,255,102,0.6);
+        }
+
+        .hero h1 span {
+            color: #00ff66;
+        }
+
+        .hero p {
+            margin-top: 18px;
+
+            color: #9ba79d;
+
+            font-size: 17px;
+        }
+
+        .hero-btn {
+            margin-top: 30px;
+
+            padding: 16px 35px;
+
+            border-radius: 12px;
+
+            background: #00ff66;
+
+            color: #031007;
+
+            font-size: 17px;
+
+            box-shadow:
+                0 0 15px rgba(0,255,102,0.6),
+                0 0 45px rgba(0,255,102,0.25);
+
+            transition: 0.25s;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 0 25px rgba(0,255,102,0.8),
+                0 0 60px rgba(0,255,102,0.35);
+        }
+
+        /* =========================
+           PROMO
+        ========================= */
+
+        .promo {
+            margin: 10px 20px 45px;
+
+            padding: 28px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0,255,102,0.15),
+                    rgba(0,0,0,0.7)
+                );
+
+            border: 1px solid rgba(0,255,102,0.35);
+
+            box-shadow:
+                inset 0 0 30px rgba(0,255,102,0.04),
+                0 0 25px rgba(0,255,102,0.08);
+        }
+
+        .promo h2 {
+            color: #00ff66;
+
+            margin-bottom: 8px;
+        }
+
+        .promo p {
+            color: #aeb7b0;
+        }
+
+        /* =========================
+           GAMES
+        ========================= */
+
+        .section {
+            padding: 0 20px 60px;
+
+            max-width: 1100px;
+
+            margin: auto;
+        }
+
+        .section-title {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 25px;
+        }
+
+        .section-title span {
+            color: #00ff66;
+
+            font-size: 14px;
+        }
+
+        .games {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+        .game {
+            min-height: 170px;
+
+            border-radius: 16px;
+
+            background:
+                radial-gradient(
+                    circle at 50% 20%,
+                    rgba(0,255,102,0.14),
+                    transparent 55%
+                ),
+                #0a100b;
+
+            border: 1px solid rgba(0,255,102,0.2);
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            transition: 0.25s;
+
+            cursor: pointer;
+        }
+
+        .game:hover {
+            transform: translateY(-5px);
+
+            border-color: #00ff66;
+
+            box-shadow:
+                0 0 25px rgba(0,255,102,0.18);
+        }
+
+        .game-icon {
+            font-size: 45px;
+
+            margin-bottom: 12px;
+        }
+
+        .game h3 {
+            font-size: 17px;
+        }
+
+        .game small {
+            margin-top: 5px;
+
+            color: #68736b;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+
+            padding: 30px 20px;
+
+            border-top:
+                1px solid rgba(0,255,102,0.15);
+
+            color: #566059;
+
+            font-size: 13px;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal {
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(0,0,0,0.78);
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 100;
+
+            backdrop-filter: blur(8px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-box {
+            width: 100%;
+
+            max-width: 420px;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(0,255,102,0.15),
+                    transparent 55%
+                ),
+                #081009;
+
+            border: 1px solid rgba(0,255,102,0.4);
+
+            border-radius: 20px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 0 40px rgba(0,255,102,0.15);
+
+            position: relative;
+
+            animation: modalOpen 0.2s ease;
+        }
+
+        @keyframes modalOpen {
+
+            from {
+                transform: scale(0.92);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+        }
+
+        .close {
+            position: absolute;
+
+            right: 18px;
+            top: 15px;
+
+            width: 35px;
+            height: 35px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.05);
+
+            color: white;
+
+            font-size: 20px;
+        }
+
+        .close:hover {
+            background: rgba(255,0,0,0.2);
+        }
+
+        .modal-box h2 {
+            text-align: center;
+
+            margin-bottom: 8px;
+
+            font-size: 27px;
+        }
+
+        .modal-subtitle {
+            text-align: center;
+
+            color: #778078;
+
+            margin-bottom: 25px;
+
+            font-size: 14px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #aab3ac;
+
+            font-size: 13px;
+        }
+
+        .input-group input {
+            width: 100%;
+
+            padding: 14px;
+
+            border-radius: 10px;
+
+            border: 1px solid rgba(0,255,102,0.2);
+
+            background: #050805;
+
+            color: white;
+
+            outline: none;
+
+            font-size: 15px;
+        }
+
+        .input-group input:focus {
+            border-color: #00ff66;
+
+            box-shadow:
+                0 0 10px rgba(0,255,102,0.15);
+        }
+
+        .submit-btn {
+            width: 100%;
+
+            padding: 15px;
+
+            margin-top: 8px;
+
+            border-radius: 10px;
+
+            background: #00ff66;
+
+            color: #031007;
+
+            font-size: 16px;
+
+            box-shadow:
+                0 0 18px rgba(0,255,102,0.35);
+
+            transition: 0.2s;
+        }
+
+        .submit-btn:hover {
+            box-shadow:
+                0 0 28px rgba(0,255,102,0.6);
+        }
+
+        .switch {
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #778078;
+
+            font-size: 14px;
+        }
+
+        .switch button {
+            background: none;
+
+            color: #00ff66;
+
+            margin-left: 5px;
+        }
+
+        /* =========================
+           USER PROFILE
+        ========================= */
+
+        .user-profile {
+            display: none;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .user-profile.active {
+            display: flex;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #00ff66;
+
+            color: #031007;
+
+            font-weight: 900;
+        }
+
+        .username {
+            color: #00ff66;
+
+            font-weight: 800;
+        }
+
+        .logout {
+            background: transparent;
+
+            color: #aaa;
+
+            font-size: 12px;
+
+            margin-left: 5px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 500px) {
+
+            header {
+                padding: 0 15px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .login,
+            .register {
+                padding: 9px 10px;
+
+                font-size: 12px;
+            }
+
+            .hero {
+                padding-top: 55px;
+            }
+
+            .promo {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+
+            .section {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .user-profile {
+                gap: 5px;
+            }
+
+            .username {
+                max-width: 80px;
+
+                overflow: hidden;
+
+                text-overflow: ellipsis;
+            }
+
+        }
+
+        @media (min-width: 700px) {
+
+            .games {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            YMY
+        </div>
+
+        <div>
+            Yes<span>MoneY</span>
+        </div>
+
+    </div>
+
+
+    <!-- КНОПКИ ВХОДА -->
+
+    <div class="auth" id="authButtons">
+
+        <button
+            class="login"
+            id="loginButton">
+            Войти
+        </button>
+
+        <button
+            class="register"
+            id="registerButton">
+            Регистрация
+        </button>
+
+    </div>
+
+
+    <!-- ПРОФИЛЬ ПОСЛЕ ВХОДА -->
+
+    <div
+        class="user-profile"
+        id="userProfile">
+
+        <div
+            class="avatar"
+            id="avatar">
+            U
+        </div>
+
+        <div>
+            <div
+                class="username"
+                id="username">
+                User
+            </div>
+
+            <button
+                class="logout"
+                id="logoutButton">
+                Выйти
+            </button>
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <h1>
+        YES<span>MONEY</span>
+    </h1>
+
+    <p>
+        Твой новый уровень игры.
+    </p>
+
+    <button
+        class="hero-btn"
+        id="playButton">
+
+        ИГРАТЬ
+
+    </button>
+
+</section>
+
+
+<!-- =========================
+     PROMO
+========================= -->
+
+<div class="promo">
+
+    <h2>
+        ⚡ БОНУС ДЛЯ НОВЫХ ИГРОКОВ
+    </h2>
+
+    <p>
+        Специальное предложение от YesMoneY уже доступно.
+    </p>
+
+</div>
+
+
+<!-- =========================
+     GAMES
+========================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            Популярные игры
+        </h2>
+
+        <span>
+            YMY GAMES
+        </span>
+
+    </div>
+
+
+    <div class="games">
+
+
+        <div
+            class="game"
+            data-game="Neon Slots">
+
+            <div class="game-icon">
+                🎰
+            </div>
+
+            <h3>
+                Neon Slots
+            </h3>
+
+            <small>
+                Скоро
+            </small>
+
+        </div>
+
+
+        <div
+            class="game"
+            data-game="Diamond">
+
+            <div class="game-icon">
+                💎
+            </div>
+
+            <h3>
+                Diamond
+            </h3>
+
+            <small>
+                Скоро
+            </small>
+
+        </div>
+
+
+        <div
+            class="game"
+            data-game="Hot Spin">
+
+            <div class="game-icon">
+                🔥
+            </div>
+
+            <h3>
+                Hot Spin
+            </h3>
+
+            <small>
+                Скоро
+            </small>
+
+        </div>
+
+
+        <div
+            class="game"
+            data-game="YMY Roulette">
+
+            <div class="game-icon">
+                🟢
+            </div>
+
+            <h3>
+                YMY Roulette
+            </h3>
+
+            <small>
+                Скоро
+            </small>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    © 2026 YesMoneY — YMY
+
+</footer>
+
+
+<!-- =========================
+     MODAL ВХОДА
+========================= -->
+
+<div
+    class="modal"
+    id="loginModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            data-close="loginModal">
+            ×
+        </button>
+
+
+        <h2>
+            Вход
+        </h2>
+
+        <p class="modal-subtitle">
+            Добро пожаловать обратно
+        </p>
+
+
+        <form id="loginForm">
+
+            <div class="input-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Введите email"
+                    required>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Пароль
+                </label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Введите пароль"
+                    required>
+
+            </div>
+
+
+            <button
+                class="submit-btn"
+                type="submit">
+
+                ВОЙТИ
+
+            </button>
+
+        </form>
+
+
+        <div class="switch">
+
+            Нет аккаунта?
+
+            <button id="switchToRegister">
+                Зарегистрироваться
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MODAL РЕГИСТРАЦИИ
+========================= -->
+
+<div
+    class="modal"
+    id="registerModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            data-close="registerModal">
+            ×
+        </button>
+
+
+        <h2>
+            Регистрация
+        </h2>
+
+        <p class="modal-subtitle">
+            Создай свой аккаунт YMY
+        </p>
+
+
+        <form id="registerForm">
+
+
+            <div class="input-group">
+
+                <label>
+                    Имя пользователя
+                </label>
+
+                <input
+                    type="text"
+                    id="registerName"
+                    placeholder="Введите имя"
+                    required>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="registerEmail"
+                    placeholder="Введите email"
+                    required>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Пароль
+                </label>
+
+                <input
+                    type="password"
+                    id="registerPassword"
+                    placeholder="Минимум 6 символов"
+                    minlength="6"
+                    required>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Повторите пароль
+                </label>
+
+                <input
+                    type="password"
+                    id="registerPassword2"
+                    placeholder="Повторите пароль"
+                    minlength="6"
+                    required>
+
+            </div>
+
+
+            <button
+                class="submit-btn"
+                type="submit">
+
+                СОЗДАТЬ АККАУНТ
+
+            </button>
+
+        </form>
+
+
+        <div class="switch">
+
+            Уже есть аккаунт?
+
+            <button id="switchToLogin">
+                Войти
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+/* =========================
+   ПОЛУЧАЕМ ЭЛЕМЕНТЫ
+========================= */
+
+const loginButton =
+    document.getElementById("loginButton");
+
+const registerButton =
+    document.getElementById("registerButton");
+
+const loginModal =
+    document.getElementById("loginModal");
+
+const registerModal =
+    document.getElementById("registerModal");
+
+const switchToRegister =
+    document.getElementById("switchToRegister");
+
+const switchToLogin =
+    document.getElementById("switchToLogin");
+
+const authButtons =
+    document.getElementById("authButtons");
+
+const userProfile =
+    document.getElementById("userProfile");
+
+const username =
+    document.getElementById("username");
+
+const avatar =
+    document.getElementById("avatar");
+
+const logoutButton =
+    document.getElementById("logoutButton");
+
+
+/* =========================
+   ОТКРЫТИЕ ОКОН
+========================= */
+
+loginButton.addEventListener("click", () => {
+
+    loginModal.classList.add("active");
+
+});
+
+
+registerButton.addEventListener("click", () => {
+
+    registerModal.classList.add("active");
+
+});
+
+
+/* =========================
+   ПЕРЕКЛЮЧЕНИЕ
+========================= */
+
+switchToRegister.addEventListener("click", () => {
+
+    loginModal.classList.remove("active");
+
+    registerModal.classList.add("active");
+
+});
+
+
+switchToLogin.addEventListener("click", () => {
+
+    registerModal.classList.remove("active");
+
+    loginModal.classList.add("active");
+
+});
+
+
+/* =========================
+   ЗАКРЫТИЕ ОКНА
+========================= */
+
+document.querySelectorAll(".close").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const modalId =
+            button.getAttribute("data-close");
+
+        document
+            .getElementById(modalId)
+            .classList.remove("active");
+
+    });
+
+});
+
+
+/* =========================
+   ЗАКРЫТИЕ ПО ФОНУ
+========================= */
+
+document.querySelectorAll(".modal").forEach(modal => {
+
+    modal.addEventListener("click", event => {
+
+        if (event.target === modal) {
+
+            modal.classList.remove("active");
+
+        }
+
+    });
+
+});
+
+
+/* =========================
+   РЕГИСТРАЦИЯ
+========================= */
+
+document
+    .getElementById("registerForm")
+    .addEventListener("submit", event => {
+
+        event.preventDefault();
+
+
+        const name =
+            document.getElementById("registerName").value.trim();
+
+        const email =
+            document.getElementById("registerEmail").value.trim();
+
+        const password =
+            document.getElementById("registerPassword").value;
+
+        const password2 =
+            document.getElementById("registerPassword2").value;
+
+
+        if (password !== password2) {
+
+            alert("Пароли не совпадают!");
+
+            return;
+
+        }
+
+
+        if (password.length < 6) {
+
+            alert("Пароль должен содержать минимум 6 символов!");
+
+            return;
+
+        }
+
+
+        /*
+           ВРЕМЕННО СОХРАНЯЕМ ДАННЫЕ
+           ТОЛЬКО НА ЭТОМ УСТРОЙСТВЕ.
+        */
+
+        localStorage.setItem(
+            "ymyUserName",
+            name
+        );
+
+        localStorage.setItem(
+            "ymyUserEmail",
+            email
+        );
+
+        localStorage.setItem(
+            "ymyUserPassword",
+            password
+        );
+
+
+        alert(
+            "Регистрация прошла успешно!"
+        );
+
+
+        registerModal.classList.remove("active");
+
+        showProfile(name);
+
+    });
+
+
+/* =========================
+   ВХОД
+========================= */
+
+document
+    .getElementById("loginForm")
+    .addEventListener("submit", event => {
+
+        event.preventDefault();
+
+
+        const email =
+            document.getElementById("loginEmail").value.trim();
+
+        const password =
+            document.getElementById("loginPassword").value;
+
+
+        const savedEmail =
+            localStorage.getItem("ymyUserEmail");
+
+        const savedPassword =
+            localStorage.getItem("ymyUserPassword");
+
+        const savedName =
+            localStorage.getItem("ymyUserName");
+
+
+        if (!savedEmail) {
+
+            alert(
+                "Аккаунт не найден. Сначала зарегистрируйтесь."
+            );
+
+            return;
+
+        }
+
+
+        if (
+            email === savedEmail &&
+            password === savedPassword
+        ) {
+
+            alert(
+                "Добро пожаловать, " + savedName + "!"
+            );
+
+            loginModal.classList.remove("active");
+
+            showProfile(savedName);
+
+        } else {
+
+            alert(
+                "Неверный email или пароль."
+            );
+
+        }
+
+    });
+
+
+/* =========================
+   ПОКАЗ ПРОФИЛЯ
+========================= */
+
+function showProfile(name) {
+
+    authButtons.style.display = "none";
+
+    userProfile.classList.add("active");
+
+    username.textContent = name;
+
+    avatar.textContent =
+        name.charAt(0).toUpperCase();
+
+}
+
+
+/* =========================
+   ВЫХОД
+========================= */
+
+logoutButton.addEventListener("click", () => {
+
+    authButtons.style.display = "flex";
+
+    userProfile.classList.remove("active");
+
+    alert("Вы вышли из аккаунта.");
+
+});
+
+
+/* =========================
+   КНОПКА ИГРАТЬ
+========================= */
+
+document
+    .getElementById("playButton")
+    .addEventListener("click", () => {
+
+        document
+            .querySelector(".section")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    });
+
+
+/* =========================
+   ИГРЫ
+========================= */
+
+document
+    .querySelectorAll(".game")
+    .forEach(game => {
+
+        game.addEventListener("click", () => {
+
+            const gameName =
+                game.getAttribute("data-game");
+
+            alert(
+                gameName +
+                "\n\nИгра пока находится в разработке."
+            );
+
+        });
+
+    });
+
+
+/* =========================
+   АВТОМАТИЧЕСКИЙ ВХОД
+========================= */
+
+const savedName =
+    localStorage.getItem("ymyUserName");
+
+
+if (savedName) {
+
+    showProfile(savedName);
+
+}
+
+
+/* ПРОВЕРКА КНОПОК */
+
+document.addEventListener("click", function(event) {
+
+    if (event.target.id === "loginButton") {
+
+        document
+            .getElementById("loginModal")
+            .classList.add("active");
+
+    }
+
+    if (event.target.id === "registerButton") {
+
+        document
+            .getElementById("registerModal")
+            .classList.add("active");
+
+    }
+
+});
+
+
+/* =========================
+   SUPABASE РЕГИСТРАЦИЯ
+========================= */
+
+const registerForm = document.getElementById("registerForm");
+
+if (registerForm) {
+
+    registerForm.addEventListener("submit", async function (event) {
+
+        event.preventDefault();
+
+        const name = document
+            .getElementById("registerName")
+            .value
+            .trim();
+
+        const email = document
+            .getElementById("registerEmail")
+            .value
+            .trim();
+
+        const password = document
+            .getElementById("registerPassword")
+            .value;
+
+        const password2 = document
+            .getElementById("registerPassword2")
+            .value;
+
+
+        /* ПРОВЕРКА ПАРОЛЕЙ */
+
+        if (password !== password2) {
+
+            alert("Пароли не совпадают!");
+
+            return;
+
+        }
+
+
+        /* РЕГИСТРАЦИЯ SUPABASE */
+
+        const { data, error } =
+            await supabaseClient.auth.signUp({
+
+                email: email,
+
+                password: password,
+
+                options: {
+
+                    data: {
+                        username: name
+                    }
+
+                }
+
+            });
+
+
+        /* ОШИБКА */
+
+        if (error) {
+
+            alert(
+                "Ошибка регистрации:\n" +
+                error.message
+            );
+
+            return;
+
+        }
+
+
+        /* УСПЕШНАЯ РЕГИСТРАЦИЯ */
+
+        localStorage.setItem(
+            "ymyUserName",
+            name
+        );
+
+
+        alert(
+            "Аккаунт успешно создан! 🎉"
+        );
+
+
+        registerForm.reset();
+
+
+        const registerModal =
+            document.getElementById("registerModal");
+
+
+        if (registerModal) {
+
+            registerModal.classList.remove("active");
+
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>

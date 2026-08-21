@@ -1577,6 +1577,88 @@ if (registerForm) {
 
 }
 
+/* =========================
+   SUPABASE — ВХОД
+========================= */
+
+const loginForm = document.getElementById("loginForm");
+
+if (loginForm) {
+
+    loginForm.addEventListener("submit", async function (event) {
+
+        event.preventDefault();
+
+        const email = document
+            .getElementById("loginEmail")
+            .value
+            .trim();
+
+        const password = document
+            .getElementById("loginPassword")
+            .value;
+
+
+        const { data, error } =
+            await supabaseClient.auth.signInWithPassword({
+
+                email: email,
+                password: password
+
+            });
+
+
+        if (error) {
+
+            alert(
+                "Ошибка входа:\n" +
+                error.message
+            );
+
+            return;
+
+        }
+
+
+        /* СОХРАНЯЕМ ИМЯ */
+
+        const userName =
+            data.user.user_metadata?.username ||
+            email.split("@")[0];
+
+
+        localStorage.setItem(
+            "ymyUserName",
+            userName
+        );
+
+
+        /* ЗАКРЫВАЕМ ОКНО */
+
+        const loginModal =
+            document.getElementById("loginModal");
+
+        if (loginModal) {
+
+            loginModal.classList.remove("active");
+
+        }
+
+
+        alert(
+            "Добро пожаловать, " +
+            userName +
+            "! 👋"
+        );
+
+
+        /* ОБНОВЛЯЕМ СТРАНИЦУ */
+
+        location.reload();
+
+    });
+
+}
 </script>
 
 </body>
